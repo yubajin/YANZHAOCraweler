@@ -33,13 +33,13 @@ class RequestMenlei:
         response = response1.replace('[','').replace('\r','').replace('\n','').replace(']','').replace('},','}.').split('.')
 
         for i in range(len(response)):
-            self.dm.append(json.loads(response[i]).get('dm'))
+            self.dm.append(json.loads(response[i]).get('dm') + ',' + json.loads(response[i]).get('mc'))
         return self.dm
 
     def spider_writer(self, content,filename='menlei.txt'):
 
         with open(filename, 'w+',encoding='utf-8') as fd:
-            fd.writelines('zyxw')
+            fd.writelines('zyxw,专业学位')
             fd.write('\n')
             for chunk in content:
                 fd.writelines(chunk)
@@ -50,19 +50,26 @@ class RequestMenlei:
         '''
 
         :param filename: 按文件名读取文件
-        :return: 返回查询列表，这里是门类代码列表
+        :return: 返回查询列表，这里是字典(包含门类代码和门类名称)的列表
         '''
         content = []
-        f = open(filename)
+        f = open(filename,encoding='utf-8')
         lines = f.readlines()
         for line in lines:
-            content.append(line.replace('\n',''))
+            dm_mc = line.replace('\n','').split(',')
+            dm = dm_mc[0]#门类代码
+            mc = dm_mc[1]#门类名称
+            dm_mcDict = {}
+            dm_mcDict['dm'] = dm
+            dm_mcDict['mc'] = mc
+            content.append(dm_mcDict)
+
         return content
 
     def getXuekeListByMenlei(self,filename = 'menlei.txt'):
         '''
         得到对应的门类领域，并且写入文件xueke.txt中
-        :return:
+        :return:返回查询列表，这里是字典(包含门类代码和门类名称)的列表
         '''
         response = self.spider_menlei()  ###爬去门类领域的数据
 
@@ -72,9 +79,10 @@ class RequestMenlei:
 
         ###将xueke.txt文档中的数据读取出来
         result = self.spider_reader(filename)
-        print('result:', result)
         return  result
 
 if __name__ == '__main__':
     requestMenlei = RequestMenlei()
-    requestMenlei.getXuekeListByMenlei()
+    result=requestMenlei.getXuekeListByMenlei()
+
+    print('result:', result)

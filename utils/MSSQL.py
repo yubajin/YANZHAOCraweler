@@ -67,6 +67,7 @@ class MSSQL:
         except Exception as err:
             flag = False
             self._conn.rollback()
+            print('sql:'+sql)
             print("MSSQL执行失败, %s" % err)
         else:
             return flag

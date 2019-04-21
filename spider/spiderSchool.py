@@ -98,9 +98,11 @@ class SpiderSchool:
 
         return result
 
-    def resolvePageAndInsert(self, doc, db):
+    def resolvePageAndInsert(self, mlName,zyName,doc, db):
         '''
-        对获得的网页doc进行解析,并一条一条处理，插入数据库中
+        将传进来的门类类别和专业名称参数，和对获得的网页doc进行解析得到的信息,并一条一条处理，插入数据库中
+        :param mlName:门类类别名称
+        :param zyName:专业名称代码
         :param doc:要解析的网页文档
         :param db:要插入的数据库名称
         :return:
@@ -149,8 +151,9 @@ class SpiderSchool:
             _211 = str(school['_211'])
             link = school['link']
 
-            cur_sql_users_value = "('"+scCode + "','" + sc + "','" + local + "','" + _985 + "','" + _211 + "','" + link + "')"
-            cur_sql = "insert into " + db + "(Aca_No,Aca_Name,Aca_city,Aca_985,Aca_211,Dep_Url) values" + cur_sql_users_value
+            cur_sql_users_value = "('"+scCode + "','" + sc + "','" + local + "','" + _985 + "','" + _211 + "','" + mlName + "','" + zyName + "','" + link + "')"
+            cur_sql = "insert into " + db + "(Aca_No,Aca_Name,Aca_city,Aca_985,Aca_211,Aca_category,Aca_professionalName,Dep_Url) values" + cur_sql_users_value
+            # print(cur_sql)
 
             mssql = MSSQL()
 
@@ -190,8 +193,11 @@ class SpiderSchool:
 
             requestMenlei = RequestMenlei()
             mlCodes = requestMenlei.getXuekeListByMenlei(MLfile)
-            for mlCode in mlCodes: # 按门类类别选择
-                print('mlCode:'+mlCode)
+            for mlCodeIndex in range(len(mlCodes)): # 按门类类别选择
+                dm_mc = mlCodes[mlCodeIndex]
+                mlName = dm_mc['mc']
+                mlCode = dm_mc['dm']
+                # print('mlCode:'+mlCode)
                 str2 = self.selectByMLLBOption2(mlCode)
 
                 # 选取专业领域，专业领域的获取依赖门类类别
@@ -199,31 +205,34 @@ class SpiderSchool:
                 requestXueke.getXuekeListByMenlei(mlCode,XKfile)
                 xkCodes = requestXueke.spider_reader(XKfile)
 
-                for xkCode in xkCodes: # 按学科类别选择
+                for xkCodeIndex in range(len(xkCodes)): # 按学科类别选择
+                    xkCode = xkCodes[xkCodeIndex]
                     str3 =self.selectByZYLYOption3(xkCode)
 
                     #选取专业名称，专业名称的获取依赖专业领域代码
-                    print('xkCode:'+xkCode)
+                    # print('xkCode:'+xkCode)
                     requestZhuanye = RequestZhuanye()
                     requestZhuanye.getZhuanyeListByXueke(xkCode,ZYfile)#专业名称的获取依赖专业领域代码
                     zyNames = requestZhuanye.spider_reader(ZYfile)
 
-                    for zyName in zyNames:# 按专业名称选择
+                    for zyNameIndex in range(len(zyNames)):# 按专业名称选择
+                        zyName = zyNames[zyNameIndex]
                         str4 = self.selectByZYMCOption4(zyName)
-                        print('zyName:'+zyName)
+                        # print('zyName:'+zyName)
 
-                        for sfCode in sfCodes:# 按省份轮流查询
+                        for sfCodeIndex in range(len(sfCodes)):# 按省份轮流查询
+                            sfCode = sfCodes[sfCodeIndex]
                             str1 = self.selectBySFCode1(sfCode)
                             execStr = str1 + str2 + str3 + str4
                             # print(execStr)
 
-                            # browser.get(url)
-                            # browser.execute_script(execStr) # 调转到要爬取的页面
-                            #
-                            # #页面解析
-                            # html = browser.page_source
-                            # doc = pq(html)
-                            # self.resolvePageAndInsert(doc,db)
+                            browser.get(url)
+                            browser.execute_script(execStr) # 调转到要爬取的页面
+
+                            #页面解析
+                            html = browser.page_source
+                            doc = pq(html)
+                            self.resolvePageAndInsert(mlName,zyName,doc,db)
 
         except TimeoutException:
             print("获取文档失败")

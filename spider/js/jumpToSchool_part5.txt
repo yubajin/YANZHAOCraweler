@@ -1,0 +1,9 @@
+]")<!-- 此处设置专业名称 此处默认为软件工程 -->
+zymcOptions.attr("selected","selected");
+
+console.log(zymcOptions.attr("selected"));
+
+var queryBt = $("td.text_center input");
+console.log(queryBt.attr("value"));
+
+queryBt.click();

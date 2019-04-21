@@ -1,0 +1,6 @@
+<!-- 选取学校所在省市 -->
+<!-- value为学校省市的代码 -->
+<!-- 11 beijin -->
+<!-- 36 jiangxi -->
+var ssdm = $("#form2 select[name=ssdm]")
+var ssdmOptions = ssdm.find("option[value=

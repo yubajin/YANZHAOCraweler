@@ -5,7 +5,7 @@ from pyquery import PyQuery as pq
 from bs4 import BeautifulSoup
 from config import *
 from utils.RequestShengfen import *
-from utils.RequestXueke import *
+from utils.RequestLingyu import *
 from utils.RequestZhuanye import *
 from utils.RequestMenLei import *
 from utils.MSSQL import *
@@ -32,7 +32,7 @@ class SpiderSchool:
 
     def selectBySFCode1(self,ssCode='36'):
         '''
-        按省份代码查找硕士专业目录
+        按省份代码硕士专业目录
         :param ssCode:省份代码,参数为字符串
         :return:jumpToSchool_part1和jumpToSchool_part2组成的部分js代码
         '''
@@ -52,7 +52,7 @@ class SpiderSchool:
 
     def selectByMLLBOption2(self,mlCode='zyxw'):
         '''
-         按门类类别查找硕士专业目录
+         按门类类别选择硕士专业目录
         :param mlCode:门类类别代码，参数为字符串 zyxw表示专业学位
         :return:和jumpToSchool_part3组成的部分js代码
         '''
@@ -100,7 +100,7 @@ class SpiderSchool:
 
     def resolvePageAndInsert(self, mlName,zyName,doc, db):
         '''
-        将传进来的门类类别和专业名称参数，和对获得的网页doc进行解析得到的信息,并一条一条处理，插入数据库中
+        将传进来的门类类别和专业名称参数，和对获得的网页doc进行解析得到的一条一条信息组合,并逐条处理，插入数据库中
         :param mlName:门类类别名称
         :param zyName:专业名称代码
         :param doc:要解析的网页文档
@@ -175,64 +175,61 @@ class SpiderSchool:
         db = SCHOOLS_COLLECTION_P  # 是专硕还是学硕的数据库
 
         try:
-            curPath = os.path.abspath(os.path.dirname(__file__))
-            # 读取门类类别
-            MLfile = curPath + '\\' + os.pardir + '\\utils\\menlei.txt'
-            # 读取专业领域
-            XKfile = curPath + '\\' + os.pardir + '\\utils\\xueke.txt'
-
-            # 读取专业名称
-            ZYfile = curPath + '\\' + os.pardir + '\\utils\\zhuanye.txt'
-
-            #读取省份代码
-            SFfile = curPath + '\\' + os.pardir + '\\utils\\shengfen.txt'
-            requestShengfen = RequestShengfen()
-            sfCodes = requestShengfen.spider_reader(SFfile)
-
-            execStr = ''#最后要执行的js代码
-
+            # 按门类类别选择
             requestMenlei = RequestMenlei()
-            mlCodes = requestMenlei.getXuekeListByMenlei(MLfile)
+            if(requestMenlei.ismenleiCodesEmpty()):
+                requestMenlei.spider_parse()
+            mlCodes = requestMenlei.get_menleiCodes()
+
             for mlCodeIndex in range(len(mlCodes)): # 按门类类别选择
-                dm_mc = mlCodes[mlCodeIndex]
-                mlName = dm_mc['mc']
-                mlCode = dm_mc['dm']
-                # print('mlCode:'+mlCode)
+                mlCode = mlCodes[mlCodeIndex]
                 str2 = self.selectByMLLBOption2(mlCode)
+                print('mlCode:'+mlCode)
+                # requestMenlei.remove_menleiCode(mlCode)#爬取过的门类类别移除，方便记录爬取到的位置
 
-                # 选取专业领域，专业领域的获取依赖门类类别
-                requestXueke = RequestXueke()
-                requestXueke.getXuekeListByMenlei(mlCode,XKfile)
-                xkCodes = requestXueke.spider_reader(XKfile)
+                # 选取学科类别(专业领域)，专业领域的获取依赖门类类别
+                requestLingyu = RequestLingyu()
+                if(requestLingyu.isLingyuCodesEmpty()):
+                    requestLingyu.spider_parse(mlCode)
+                lingyuCodes = requestLingyu.get_lingyuCodes()
 
-                for xkCodeIndex in range(len(xkCodes)): # 按学科类别选择
-                    xkCode = xkCodes[xkCodeIndex]
-                    str3 =self.selectByZYLYOption3(xkCode)
+                for lyCodesIndex in range(len(lingyuCodes)): # 按学科类别(专业领域)选择
+                    lyCode = lingyuCodes[lyCodesIndex]
+                    str3 =self.selectByZYLYOption3(lyCode)
+                    print('lyCode:'+lyCode)
+                    # requestLingyu.remove_lingyuCode(lyCode)
 
                     #选取专业名称，专业名称的获取依赖专业领域代码
-                    # print('xkCode:'+xkCode)
                     requestZhuanye = RequestZhuanye()
-                    requestZhuanye.getZhuanyeListByXueke(xkCode,ZYfile)#专业名称的获取依赖专业领域代码
-                    zyNames = requestZhuanye.spider_reader(ZYfile)
+                    if(requestZhuanye.isZhuanyeNameEmpty()):
+                        requestZhuanye.spider_parse(lyCode)
+                    zyNames = requestZhuanye.get_zhuanyeNames()
 
                     for zyNameIndex in range(len(zyNames)):# 按专业名称选择
                         zyName = zyNames[zyNameIndex]
                         str4 = self.selectByZYMCOption4(zyName)
-                        # print('zyName:'+zyName)
+                        print('zyName:'+zyName)
+                        # requestZhuanye.remove_zhuanyeName(zyName)
+
+                        requestShengfen = RequestShengfen()# 按省份轮流查询
+                        if(requestShengfen.isSfCodesEmpty()):
+                            requestShengfen.spider_parse()
+                        sfCodes = requestShengfen.get_sfCodes()
 
                         for sfCodeIndex in range(len(sfCodes)):# 按省份轮流查询
                             sfCode = sfCodes[sfCodeIndex]
                             str1 = self.selectBySFCode1(sfCode)
                             execStr = str1 + str2 + str3 + str4
                             # print(execStr)
+                            # requestShengfen.remove_sfCode(sfCode)
 
-                            browser.get(url)
-                            browser.execute_script(execStr) # 调转到要爬取的页面
-
-                            #页面解析
-                            html = browser.page_source
-                            doc = pq(html)
-                            self.resolvePageAndInsert(mlName,zyName,doc,db)
+                            # browser.get(url)
+                            # browser.execute_script(execStr) # 调转到要爬取的页面
+                            #
+                            # #页面解析
+                            # html = browser.page_source
+                            # doc = pq(html)
+                            # self.resolvePageAndInsert(mlName,zyName,doc,db)
 
         except TimeoutException:
             print("获取文档失败")

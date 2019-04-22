@@ -3,13 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="89da1dd6-5985-4432-ae13-daef22623fb4" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/spider/menlei.txt" afterPath="" />
       <change beforePath="$PROJECT_DIR$/spider/spiderSchool.py" afterPath="$PROJECT_DIR$/spider/spiderSchool.py" />
-      <change beforePath="$PROJECT_DIR$/utils/MSSQL.py" afterPath="$PROJECT_DIR$/utils/MSSQL.py" />
       <change beforePath="$PROJECT_DIR$/utils/RequestMenLei.py" afterPath="$PROJECT_DIR$/utils/RequestMenLei.py" />
-      <change beforePath="$PROJECT_DIR$/utils/menlei.txt" afterPath="$PROJECT_DIR$/utils/menlei.txt" />
-      <change beforePath="$PROJECT_DIR$/utils/xueke.txt" afterPath="$PROJECT_DIR$/utils/xueke.txt" />
-      <change beforePath="$PROJECT_DIR$/utils/zhuanye.txt" afterPath="$PROJECT_DIR$/utils/zhuanye.txt" />
+      <change beforePath="$PROJECT_DIR$/utils/RequestShengfen.py" afterPath="$PROJECT_DIR$/utils/RequestShengfen.py" />
+      <change beforePath="$PROJECT_DIR$/utils/RequestXueke.py" afterPath="$PROJECT_DIR$/utils/RequestLingyu.py" />
+      <change beforePath="$PROJECT_DIR$/utils/RequestZhuanye.py" afterPath="$PROJECT_DIR$/utils/RequestZhuanye.py" />
+      <change beforePath="$PROJECT_DIR$/utils/menlei.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/utils/shengfen.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/utils/xueke.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/utils/zhuanye.txt" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,14 +21,16 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/YANZHAOCraweler$RequestMenLei.coverage" NAME="RequestMenLei Coverage Results" MODIFIED="1555838558378" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
+    <SUITE FILE_PATH="coverage/YANZHAOCraweler$RequestMenLei.coverage" NAME="RequestMenLei Coverage Results" MODIFIED="1555900974253" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
+    <SUITE FILE_PATH="coverage/YANZHAOCraweler$RequestShengfen.coverage" NAME="RequestShengfen Coverage Results" MODIFIED="1555897845810" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
     <SUITE FILE_PATH="coverage/Craweler$spiderSchool.coverage" NAME="spiderSchool Coverage Results" MODIFIED="1555210002270" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/YANZHAOCraweler$spiderSchool.coverage" NAME="spiderSchool Coverage Results" MODIFIED="1555223601680" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/YANZHAOCraweler$query_shengfen.coverage" NAME="query_shengfen Coverage Results" MODIFIED="1555292101581" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
-    <SUITE FILE_PATH="coverage/YANZHAOCraweler$spiderSchool__1_.coverage" NAME="spiderSchool (1) Coverage Results" MODIFIED="1555839711316" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spider" />
+    <SUITE FILE_PATH="coverage/YANZHAOCraweler$spiderSchool__1_.coverage" NAME="spiderSchool (1) Coverage Results" MODIFIED="1555901605347" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spider" />
     <SUITE FILE_PATH="coverage/YANZHAOCraweler$RequestXueke.coverage" NAME="RequestXueke Coverage Results" MODIFIED="1555820279659" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
     <SUITE FILE_PATH="coverage/YANZHAOCraweler$MSSQL.coverage" NAME="MSSQL Coverage Results" MODIFIED="1555780617142" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
-    <SUITE FILE_PATH="coverage/YANZHAOCraweler$RequestZhuanye.coverage" NAME="RequestZhuanye Coverage Results" MODIFIED="1555819389994" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
+    <SUITE FILE_PATH="coverage/YANZHAOCraweler$RequestZhuanye.coverage" NAME="RequestZhuanye Coverage Results" MODIFIED="1555898361081" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
+    <SUITE FILE_PATH="coverage/YANZHAOCraweler$RequestLingyu.coverage" NAME="RequestLingyu Coverage Results" MODIFIED="1555898181953" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -41,46 +45,87 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="spiderSchool.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spider/spiderSchool.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1850">
-              <caret line="158" column="0" lean-forward="true" selection-start-line="158" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
-              <folding>
-                <element signature="e#462#813#0" expanded="false" />
-                <element signature="e#866#1447#0" expanded="false" />
-                <element signature="e#1506#1933#0" expanded="false" />
-                <element signature="e#1990#2415#0" expanded="false" />
-                <element signature="e#2474#2895#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RequestMenLei.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/RequestMenLei.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="82" column="0" lean-forward="true" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
-              <folding>
-                <element signature="e#47#62#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MSSQL.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/utils/MSSQL.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="71" column="13" lean-forward="true" selection-start-line="71" selection-start-column="13" selection-end-line="71" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="spiderSchool.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/spider/spiderSchool.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="179">
+                  <caret line="222" column="44" lean-forward="true" selection-start-line="222" selection-start-column="44" selection-end-line="222" selection-end-column="44" />
+                  <folding>
+                    <element signature="e#0#14#0" expanded="true" />
+                    <element signature="e#463#814#0" expanded="false" />
+                    <element signature="e#867#1446#0" expanded="false" />
+                    <element signature="e#1505#1932#0" expanded="false" />
+                    <element signature="e#1989#2414#0" expanded="false" />
+                    <element signature="e#2473#2894#0" expanded="false" />
+                    <element signature="e#2963#5272#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="RequestZhuanye.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/utils/RequestZhuanye.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="388">
+                  <caret line="53" column="38" lean-forward="false" selection-start-line="53" selection-start-column="38" selection-end-line="53" selection-end-column="38" />
+                  <folding>
+                    <element signature="e#209#233#0" expanded="false" />
+                    <element signature="e#289#326#0" expanded="false" />
+                    <element signature="e#370#505#0" expanded="false" />
+                    <element signature="e#563#945#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="RequestLingyu.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/utils/RequestLingyu.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="238">
+                  <caret line="70" column="39" lean-forward="false" selection-start-line="70" selection-start-column="39" selection-end-line="70" selection-end-column="39" />
+                  <folding>
+                    <element signature="e#257#280#0" expanded="false" />
+                    <element signature="e#321#344#0" expanded="false" />
+                    <element signature="e#387#819#0" expanded="false" />
+                    <element signature="e#873#999#0" expanded="false" />
+                    <element signature="e#1053#1088#0" expanded="false" />
+                    <element signature="e#1132#1263#0" expanded="false" />
+                    <element signature="e#1309#1669#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="RequestMenLei.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/utils/RequestMenLei.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="187">
+                  <caret line="8" column="12" lean-forward="false" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+                  <folding>
+                    <element signature="e#47#62#0" expanded="true" />
+                    <element signature="e#320#343#0" expanded="false" />
+                    <element signature="e#379#953#0" expanded="false" />
+                    <element signature="e#1011#1048#0" expanded="false" />
+                    <element signature="e#1106#1143#0" expanded="false" />
+                    <element signature="e#1197#1321#0" expanded="false" />
+                    <element signature="e#1375#1410#0" expanded="false" />
+                    <element signature="e#1454#1650#0" expanded="false" />
+                    <element signature="e#1689#1960#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -101,7 +146,12 @@
       <find>prin</find>
       <find>zyName</find>
       <find>pri</find>
+      <find>json</find>
+      <find>meilei</find>
     </findStrings>
+    <replaceStrings>
+      <replace>menlei</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -124,12 +174,14 @@
         <option value="$PROJECT_DIR$/spider/js/jumpToSchool_part4.txt" />
         <option value="$PROJECT_DIR$/spider/js/jumpToSchool_part5.txt" />
         <option value="$PROJECT_DIR$/spider/js/jumpToSchool_part3.txt" />
+        <option value="$PROJECT_DIR$/utils/MSSQL.py" />
+        <option value="$PROJECT_DIR$/utils/xueke.txt" />
+        <option value="$PROJECT_DIR$/utils/RequestXueke.py" />
         <option value="$PROJECT_DIR$/utils/RequestShengfen.py" />
         <option value="$PROJECT_DIR$/utils/RequestZhuanye.py" />
-        <option value="$PROJECT_DIR$/utils/RequestXueke.py" />
+        <option value="$PROJECT_DIR$/utils/RequestLingyu.py" />
         <option value="$PROJECT_DIR$/utils/RequestMenLei.py" />
         <option value="$PROJECT_DIR$/spider/spiderSchool.py" />
-        <option value="$PROJECT_DIR$/utils/MSSQL.py" />
       </list>
     </option>
   </component>
@@ -163,6 +215,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -190,8 +244,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -268,7 +320,7 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="ADDITIONAL_ARGS" value="" />
     </configuration>
-    <configuration name="MSSQL" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="RequestLingyu" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -281,7 +333,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="YANZHAOCraweler" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/MSSQL.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/RequestLingyu.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -306,7 +358,7 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="RequestXueke" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="RequestShengfen" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -319,7 +371,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="YANZHAOCraweler" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/RequestXueke.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/RequestShengfen.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -477,18 +529,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.spiderSchool (1)" />
-      <item index="1" class="java.lang.String" itemvalue="Python.MSSQL" />
-      <item index="2" class="java.lang.String" itemvalue="Python.RequestXueke" />
-      <item index="3" class="java.lang.String" itemvalue="Python.RequestZhuanye" />
-      <item index="4" class="java.lang.String" itemvalue="Python.RequestMenLei" />
+      <item index="1" class="java.lang.String" itemvalue="Python.RequestMenLei" />
+      <item index="2" class="java.lang.String" itemvalue="Python.RequestShengfen" />
+      <item index="3" class="java.lang.String" itemvalue="Python.RequestLingyu" />
+      <item index="4" class="java.lang.String" itemvalue="Python.RequestZhuanye" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.spiderSchool (1)" />
         <item index="1" class="java.lang.String" itemvalue="Python.RequestMenLei" />
-        <item index="2" class="java.lang.String" itemvalue="Python.RequestXueke" />
-        <item index="3" class="java.lang.String" itemvalue="Python.RequestZhuanye" />
-        <item index="4" class="java.lang.String" itemvalue="Python.MSSQL" />
+        <item index="2" class="java.lang.String" itemvalue="Python.RequestZhuanye" />
+        <item index="3" class="java.lang.String" itemvalue="Python.RequestLingyu" />
+        <item index="4" class="java.lang.String" itemvalue="Python.RequestShengfen" />
       </list>
     </recent_temporary>
   </component>
@@ -510,27 +562,26 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32026145" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39542484" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19288956" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14372164" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39967373" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39869282" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -567,34 +618,53 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/spider/spiderSchool.py</url>
-          <line>195</line>
+          <line>183</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/spider/spiderSchool.py</url>
-          <line>229</line>
+          <line>226</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils/RequestMenLei.py</url>
-          <line>32</line>
-          <option name="timeStamp" value="6" />
+          <line>95</line>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils/RequestMenLei.py</url>
-          <line>36</line>
-          <option name="timeStamp" value="7" />
+          <line>110</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/utils/RequestLingyu.py</url>
+          <line>97</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/utils/RequestZhuanye.py</url>
+          <line>51</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/utils/RequestZhuanye.py</url>
+          <line>53</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/spider/spiderSchool.py</url>
+          <line>165</line>
+          <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="8" />
+      <option name="time" value="25" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/jumpToSchool_part1.txt" />
     <entry file="file://$PROJECT_DIR$/utils/RequestShengfen.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="825">
@@ -614,11 +684,13 @@
         <state relative-caret-position="3250">
           <caret line="130" column="52" lean-forward="true" selection-start-line="130" selection-start-column="52" selection-end-line="130" selection-end-column="52" />
           <folding>
-            <element signature="e#462#813#0" expanded="false" />
-            <element signature="e#866#1447#0" expanded="false" />
-            <element signature="e#1506#1933#0" expanded="false" />
-            <element signature="e#1990#2415#0" expanded="false" />
-            <element signature="e#2474#2895#0" expanded="false" />
+            <element signature="e#0#14#0" expanded="true" />
+            <element signature="e#463#814#0" expanded="false" />
+            <element signature="e#867#1446#0" expanded="false" />
+            <element signature="e#1505#1932#0" expanded="false" />
+            <element signature="e#1989#2414#0" expanded="false" />
+            <element signature="e#2473#2894#0" expanded="false" />
+            <element signature="e#2963#5272#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -644,11 +716,13 @@
         <state relative-caret-position="2225">
           <caret line="89" column="34" lean-forward="true" selection-start-line="89" selection-start-column="34" selection-end-line="89" selection-end-column="34" />
           <folding>
-            <element signature="e#462#813#0" expanded="false" />
-            <element signature="e#866#1447#0" expanded="false" />
-            <element signature="e#1506#1933#0" expanded="false" />
-            <element signature="e#1990#2415#0" expanded="false" />
-            <element signature="e#2474#2895#0" expanded="false" />
+            <element signature="e#0#14#0" expanded="true" />
+            <element signature="e#463#814#0" expanded="false" />
+            <element signature="e#867#1446#0" expanded="false" />
+            <element signature="e#1505#1932#0" expanded="false" />
+            <element signature="e#1989#2414#0" expanded="false" />
+            <element signature="e#2473#2894#0" expanded="false" />
+            <element signature="e#2963#5272#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -782,13 +856,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/spider/xueke.txt" />
     <entry file="file://$PROJECT_DIR$/spider/zhuanye.txt" />
-    <entry file="file://$PROJECT_DIR$/utils/shengfen.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="2" column="2" lean-forward="true" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
@@ -817,29 +884,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Anaconda3/Lib/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="310" column="0" lean-forward="false" selection-start-line="310" selection-start-column="0" selection-end-line="310" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/RequestZhuanye.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="49" column="0" lean-forward="true" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/RequestShengfen.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="43" column="8" lean-forward="false" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -848,35 +892,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/RequestXueke.py">
+    <entry file="file://$PROJECT_DIR$/utils/shengfen.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="48" column="20" lean-forward="true" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/RequestMenLei.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="82" column="0" lean-forward="true" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
-          <folding>
-            <element signature="e#47#62#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spider/spiderSchool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1850">
-          <caret line="158" column="0" lean-forward="true" selection-start-line="158" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
-          <folding>
-            <element signature="e#462#813#0" expanded="false" />
-            <element signature="e#866#1447#0" expanded="false" />
-            <element signature="e#1506#1933#0" expanded="false" />
-            <element signature="e#1990#2415#0" expanded="false" />
-            <element signature="e#2474#2895#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="25">
+          <caret line="2" column="2" lean-forward="true" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
         </state>
       </provider>
     </entry>
@@ -884,6 +903,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="25">
           <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/menlei.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="5" column="5" lean-forward="true" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/MSSQL.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="64" column="30" lean-forward="false" selection-start-line="64" selection-start-column="30" selection-end-line="64" selection-end-column="30" />
           <folding />
         </state>
       </provider>
@@ -896,19 +929,101 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/menlei.txt">
+    <entry file="file://$USER_HOME$/Anaconda3/Lib/json/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="5" lean-forward="true" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+        <state relative-caret-position="145">
+          <caret line="353" column="0" lean-forward="false" selection-start-line="353" selection-start-column="0" selection-end-line="353" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/MSSQL.py">
+    <entry file="file://$PROJECT_DIR$/utils/RequestShengfen.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="71" column="13" lean-forward="true" selection-start-line="71" selection-start-column="13" selection-end-line="71" selection-end-column="13" />
+        <state relative-caret-position="126">
+          <caret line="72" column="8" lean-forward="false" selection-start-line="72" selection-start-column="8" selection-end-line="72" selection-end-column="8" />
+          <folding>
+            <element signature="e#46#61#0" expanded="true" />
+            <element signature="e#258#277#0" expanded="false" />
+            <element signature="e#314#333#0" expanded="false" />
+            <element signature="e#365#843#0" expanded="false" />
+            <element signature="e#889#1008#0" expanded="false" />
+            <element signature="e#1054#1120#0" expanded="false" />
+            <element signature="e#1160#1275#0" expanded="false" />
+            <element signature="e#1317#1395#0" expanded="false" />
+            <element signature="e#1436#1694#0" expanded="false" />
+            <element signature="e#2145#2300#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Anaconda3/Lib/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="308" column="0" lean-forward="false" selection-start-line="308" selection-start-column="0" selection-end-line="308" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/RequestZhuanye.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="53" column="38" lean-forward="false" selection-start-line="53" selection-start-column="38" selection-end-line="53" selection-end-column="38" />
+          <folding>
+            <element signature="e#209#233#0" expanded="false" />
+            <element signature="e#289#326#0" expanded="false" />
+            <element signature="e#370#505#0" expanded="false" />
+            <element signature="e#563#945#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/RequestLingyu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="70" column="39" lean-forward="false" selection-start-line="70" selection-start-column="39" selection-end-line="70" selection-end-column="39" />
+          <folding>
+            <element signature="e#257#280#0" expanded="false" />
+            <element signature="e#321#344#0" expanded="false" />
+            <element signature="e#387#819#0" expanded="false" />
+            <element signature="e#873#999#0" expanded="false" />
+            <element signature="e#1053#1088#0" expanded="false" />
+            <element signature="e#1132#1263#0" expanded="false" />
+            <element signature="e#1309#1669#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/RequestMenLei.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="8" column="12" lean-forward="false" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+          <folding>
+            <element signature="e#47#62#0" expanded="true" />
+            <element signature="e#320#343#0" expanded="false" />
+            <element signature="e#379#953#0" expanded="false" />
+            <element signature="e#1011#1048#0" expanded="false" />
+            <element signature="e#1106#1143#0" expanded="false" />
+            <element signature="e#1197#1321#0" expanded="false" />
+            <element signature="e#1375#1410#0" expanded="false" />
+            <element signature="e#1454#1650#0" expanded="false" />
+            <element signature="e#1689#1960#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spider/spiderSchool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="222" column="44" lean-forward="true" selection-start-line="222" selection-start-column="44" selection-end-line="222" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+            <element signature="e#463#814#0" expanded="false" />
+            <element signature="e#867#1446#0" expanded="false" />
+            <element signature="e#1505#1932#0" expanded="false" />
+            <element signature="e#1989#2414#0" expanded="false" />
+            <element signature="e#2473#2894#0" expanded="false" />
+            <element signature="e#2963#5272#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

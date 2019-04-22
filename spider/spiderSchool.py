@@ -179,10 +179,12 @@ class SpiderSchool:
             requestMenlei = RequestMenlei()
             if(requestMenlei.ismenleiCodesEmpty()):
                 requestMenlei.spider_parse()
-            mlCodes = requestMenlei.get_menleiCodes()
+            mls = requestMenlei.get_menlei()
 
-            for mlCodeIndex in range(len(mlCodes)): # 按门类类别选择
-                mlCode = mlCodes[mlCodeIndex]
+            for mlCodeIndex in range(len(mls)): # 按门类类别选择
+                ml = mls[mlCodeIndex]
+                mlCode = ml['dm']
+                mlName = ml['mc']
                 str2 = self.selectByMLLBOption2(mlCode)
                 print('mlCode:'+mlCode)
                 # requestMenlei.remove_menleiCode(mlCode)#爬取过的门类类别移除，方便记录爬取到的位置
@@ -223,13 +225,13 @@ class SpiderSchool:
                             # print(execStr)
                             # requestShengfen.remove_sfCode(sfCode)
 
-                            # browser.get(url)
-                            # browser.execute_script(execStr) # 调转到要爬取的页面
-                            #
-                            # #页面解析
-                            # html = browser.page_source
-                            # doc = pq(html)
-                            # self.resolvePageAndInsert(mlName,zyName,doc,db)
+                            browser.get(url)
+                            browser.execute_script(execStr) # 调转到要爬取的页面
+
+                            #页面解析
+                            html = browser.page_source
+                            doc = pq(html)
+                            self.resolvePageAndInsert(mlName,zyName,doc,db)
 
         except TimeoutException:
             print("获取文档失败")

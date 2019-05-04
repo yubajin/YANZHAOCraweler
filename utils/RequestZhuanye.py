@@ -12,17 +12,28 @@ class RequestZhuanye:
         self.zhuanyeNames = []
 
     def get_zhuanyeNames(self):
+        if self.isZhuanyeNameEmpty():
+            return []
         return self.zhuanyeNames
 
-    def remove_zhuanyeName(self,zhuanyeName):
-        self.zhuanyeNames.remove(zhuanyeName)
+    def remove_zhuanyeNameHead(self):
+        self.zhuanyeNames.pop(0)
 
     def isZhuanyeNameEmpty(self):
         zhuanyeNameEmpty = False
         if (len(self.zhuanyeNames) == 0):
             zhuanyeNameEmpty = True
+        return zhuanyeNameEmpty
+
+    def isZhuanyeNameEmptyAferSpider(self):
+        zhuanyeNameEmpty = False
+        if ((len(self.zhuanyeNames) == 1)&(self.zhuanyeNames[0]=='')):
+            zhuanyeNameEmpty = True
 
         return zhuanyeNameEmpty
+
+    def setEmpty(self):
+        self.zhuanyeNames = []
 
     def spider_zhuanyeNames(self,zhuanyelinyu):
         '''
@@ -51,13 +62,16 @@ class RequestZhuanye:
 
 if __name__ == '__main__':
     requestZhuanye = RequestZhuanye()
-    requestZhuanye.spider_parse('0351')
+
     print(requestZhuanye.isZhuanyeNameEmpty())
+
+    requestZhuanye.spider_parse('0782')
+    print(requestZhuanye.isZhuanyeNameEmptyAferSpider())
 
     print(requestZhuanye.get_zhuanyeNames())
 
-    requestZhuanye.remove_zhuanyeName("法律（法学）")
-    print(requestZhuanye.get_zhuanyeNames())
-
-    requestZhuanye.remove_zhuanyeName("法律（非法学）")
-    print(requestZhuanye.isZhuanyeNameEmpty())
+    # requestZhuanye.remove_zhuanyeNameHead()
+    # print(requestZhuanye.get_zhuanyeNames())
+    #
+    # requestZhuanye.remove_zhuanyeNameHead()
+    # print(requestZhuanye.isZhuanyeNameEmpty())

@@ -1,0 +1,10 @@
+var lipSelected = $(".zsml-page-box .selected");<!--获取当前页面页码的节点-->
+console.log(lipSelected.html());
+
+var nextlip = lipSelected.next();<!--下一页面节点-->
+console.log(nextlip.html());
+
+nextlipA = nextlip.find('a');<!--下一页面节点的a标签-->
+nextlipAText = nextlipA.text()
+
+if(!isNaN(nextlipAText))nextlipA.trigger("click");<!--点击-->

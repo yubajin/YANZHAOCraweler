@@ -4,11 +4,11 @@ from selenium.common.exceptions import TimeoutException
 from pyquery import PyQuery as pq
 from bs4 import BeautifulSoup
 from config import *
-from utils.RequestShengfen import *
 from utils.RequestLingyu import *
 from utils.RequestZhuanye import *
 from utils.RequestMenLei import *
 from utils.MSSQL import *
+from utils.MyLog import *
 import os
 
 '''
@@ -16,8 +16,9 @@ import os
 '''
 class SpiderSchool:
 
-    @staticmethod
-    def getWebDriver():
+    browser = webdriver.Chrome()
+
+    def getWebDriver(self):
         '''
         获得浏览器连接驱动
         :return:
@@ -107,61 +108,97 @@ class SpiderSchool:
         :param db:要插入的数据库名称
         :return:
         '''
-
         soup = BeautifulSoup(str(doc), 'html.parser')
-        tbodyRaw = soup.find('tbody')
-        tbody = BeautifulSoup(str(tbodyRaw), 'html.parser').find_all('tr')
+        page = soup.find(class_='ch-table')
 
-        trr = BeautifulSoup(str(tbodyRaw), 'html.parser').find('tr')
-        if '很抱歉' in trr.get_text():
-            print('没有数据')
-            return
+        next = True&(page!=None)
+        if(page==None):
+            MyLog.warning(mlName +  ',' + zyName + '没有数据')
 
-        for item in tbody:
-            # print('item\n', item)
-            typeItems = item.select('.ch-table-center')[0]
-            typespans = BeautifulSoup(str(typeItems), 'html.parser').find_all('span')
+        while next:
+            soup = BeautifulSoup(str(doc), 'html.parser')
+            tbodyRaw = soup.find('tbody')
+            tbody = BeautifulSoup(str(tbodyRaw), 'html.parser').find_all('tr')
 
-            types = ''
-            for typespan in typespans:
-                types += typespan.get_text() + ','
+            trr = BeautifulSoup(str(tbodyRaw), 'html.parser').find('tr')
 
-            _985 = False
-            _211 = False
-            type_open = types.split(',')
-            if (len(type_open) > 1):
-                if type_open[0] == '985':
-                    _985 = True
-                if type_open[1] == '211':
-                    _211 = True
-            schoolAndCode = item.find('a').get_text().lstrip('(').split(')',1)
-            school = {
-                'link': 'http://yz.chsi.com.cn/' + item.find('a').get('href'),
-                'schoolCode':schoolAndCode[0],
-                'school': schoolAndCode[1],
-                'local': item.find_all('td')[1].get_text(),
-                '_985': _985,
-                '_211': _211
-            }
 
-            sc = school['school']
-            scCode = school['schoolCode']
-            local = school['local']
-            _985 = str(school['_985'])
-            _211 = str(school['_211'])
-            link = school['link']
+            if '很抱歉' in trr.get_text():
+                MyLog.warning('tbody没有数据')
+                return
 
-            cur_sql_users_value = "('"+scCode + "','" + sc + "','" + local + "','" + _985 + "','" + _211 + "','" + mlName + "','" + zyName + "','" + link + "')"
-            cur_sql = "insert into " + db + "(Aca_No,Aca_Name,Aca_city,Aca_985,Aca_211,Aca_category,Aca_professionalName,Dep_Url) values" + cur_sql_users_value
-            # print(cur_sql)
+            for item in tbody:
+                # print('item\n', item)
+                typeItems = item.select('.ch-table-center')[0]
+                typespans = BeautifulSoup(str(typeItems), 'html.parser').find_all('span')
 
-            mssql = MSSQL()
+                types = ''
+                for typespan in typespans:
+                    types += typespan.get_text() + ','
 
-            try:
-                mssql.ExecNonQuery(cur_sql)
-                print("招生单位信息插入数据库成功")
-            except Exception:
-                print("招生单位信息插入数据库失败")
+                _985 = False
+                _211 = False
+                type_open = types.split(',')
+                if (len(type_open) > 1):
+                    if type_open[0] == '985':
+                        _985 = True
+                    if type_open[1] == '211':
+                        _211 = True
+                schoolAndCode = item.find('a').get_text().lstrip('(').split(')',1)
+                school = {
+                    'link': 'http://yz.chsi.com.cn/' + item.find('a').get('href'),
+                    'schoolCode':schoolAndCode[0],
+                    'school': schoolAndCode[1],
+                    'local': item.find_all('td')[1].get_text(),
+                    '_985': _985,
+                    '_211': _211
+                }
+
+                sc = school['school']
+                scCode = school['schoolCode']
+                local = school['local']
+                _985 = str(school['_985'])
+                _211 = str(school['_211'])
+                link = school['link']
+
+                MyLog.info(mlName + ',' + zyName + ','  + local + ',' + sc)
+                cur_sql_users_value = "('"+scCode + "','" + sc + "','" + local + "','" + _985 + "','" + _211 + "','" + mlName + "','" + zyName + "','" + link + "')"
+                cur_sql = "insert into " + db + "(Aca_No,Aca_Name,Aca_city,Aca_985,Aca_211,Aca_category,Aca_professionalName,Dep_Url) values" + cur_sql_users_value
+                # print(cur_sql)
+
+                mssql = MSSQL()
+
+                try:
+                    mssql.ExecNonQuery(cur_sql)
+                    print("招生单位信息插入数据库成功")
+                    MyLog.info("招生单位信息插入数据库成功")
+                except Exception:
+                    print("招生单位信息插入数据库失败")
+
+            ##################下一个解析及其操作#######################
+            pageBoxRaw = soup.find(class_='ch-page')  # 找到包含页码的盒子
+            pageBox = BeautifulSoup(str(pageBoxRaw), 'html.parser')
+
+            currentPageIndex = pageBox.find(class_='lip selected')  # 找到当前页面页码
+
+            nextPageIndex = currentPageIndex.next_sibling  # 下一页面页码
+            nextliText = nextPageIndex.string
+            MyLog.info('下一页页码:' + nextliText)
+
+            next = (str(nextliText)).isdigit()
+            ##################下一个解析及其操作#######################
+
+            if next:
+                curPath = os.path.abspath(os.path.dirname(__file__))
+                filename = curPath + '\\js\\nextSchoolPage.txt'
+                file = open(filename, 'rb')
+                execStr = file.read().decode('utf-8')
+
+                SpiderSchool.browser.execute_script(execStr)  # 调转到要爬取的页面
+
+                # 页面解析
+                html = SpiderSchool.browser.page_source
+                doc = pq(html)
 
     def getSchoolList(self):
         '''
@@ -170,76 +207,92 @@ class SpiderSchool:
         '''
 
         url = URL
-        browser = SpiderSchool.getWebDriver()
-
-        db = SCHOOLS_COLLECTION_P  # 是专硕还是学硕的数据库
+        db = SCHOOLS_COLLECTION  # 是专硕还是学硕的数据库
 
         try:
             # 按门类类别选择
             requestMenlei = RequestMenlei()
             if(requestMenlei.ismenleiCodesEmpty()):
                 requestMenlei.spider_parse()
+
+            #移除前面，直至工学,纯手工代码操作
+            #######################################
+            for i in range(8):
+                requestMenlei.remove_menleiHead()
+            #######################################
+
             mls = requestMenlei.get_menlei()
+            # print(mls)
 
             for mlCodeIndex in range(len(mls)): # 按门类类别选择
                 ml = mls[mlCodeIndex]
                 mlCode = ml['dm']
                 mlName = ml['mc']
                 str2 = self.selectByMLLBOption2(mlCode)
-                print('mlCode:'+mlCode)
-                # requestMenlei.remove_menleiCode(mlCode)#爬取过的门类类别移除，方便记录爬取到的位置
+                MyLog.info('mlCode:'+mlCode)
 
                 # 选取学科类别(专业领域)，专业领域的获取依赖门类类别
                 requestLingyu = RequestLingyu()
                 if(requestLingyu.isLingyuCodesEmpty()):
                     requestLingyu.spider_parse(mlCode)
+
+                # 移除已爬取xx门类中已爬取的学科门类（专业领域），直至专业名称为xxx,纯手工代码操作
+                #######################################
+                if str(mlCode) == '08':
+                    MyLog.info('如果门类是在08门类中，移除直至轻工技术与工程')
+                    for i in range(21):
+                        requestLingyu.remove_lingyuCodeHead()
+                #######################################
+
                 lingyuCodes = requestLingyu.get_lingyuCodes()
 
                 for lyCodesIndex in range(len(lingyuCodes)): # 按学科类别(专业领域)选择
                     lyCode = lingyuCodes[lyCodesIndex]
                     str3 =self.selectByZYLYOption3(lyCode)
-                    print('lyCode:'+lyCode)
-                    # requestLingyu.remove_lingyuCode(lyCode)
+                    MyLog.info('lyCode:'+lyCode)
 
                     #选取专业名称，专业名称的获取依赖专业领域代码
                     requestZhuanye = RequestZhuanye()
                     if(requestZhuanye.isZhuanyeNameEmpty()):
                         requestZhuanye.spider_parse(lyCode)
+
+                    # 移除已爬的学科门类（专业领域），直至转化专业名为xxx,纯手工代码操作
+                    #######################################
+                    if str(lyCode) == '0822':
+                        MyLog.info('如果学科类别(领域)在0822，一直移除至制浆造纸张工程')
+                        for i in range(15):
+                            requestZhuanye.remove_zhuanyeNameHead()
+                    #######################################
+
+                    if requestZhuanye.isZhuanyeNameEmptyAferSpider():#专业名称手动置为空
+                        MyLog.info(lyCode + ',专业名称空')
+                        requestZhuanye.setEmpty()
+
                     zyNames = requestZhuanye.get_zhuanyeNames()
 
                     for zyNameIndex in range(len(zyNames)):# 按专业名称选择
                         zyName = zyNames[zyNameIndex]
                         str4 = self.selectByZYMCOption4(zyName)
-                        print('zyName:'+zyName)
-                        # requestZhuanye.remove_zhuanyeName(zyName)
+                        MyLog.info('zyName:'+zyName)
 
-                        requestShengfen = RequestShengfen()# 按省份轮流查询
-                        if(requestShengfen.isSfCodesEmpty()):
-                            requestShengfen.spider_parse()
-                        sfCodes = requestShengfen.get_sfCodes()
+                        str1 = self.selectBySFCode1()
+                        execStr = str1 + str2 + str3 + str4
 
-                        for sfCodeIndex in range(len(sfCodes)):# 按省份轮流查询
-                            sfCode = sfCodes[sfCodeIndex]
-                            str1 = self.selectBySFCode1(sfCode)
-                            execStr = str1 + str2 + str3 + str4
-                            # print(execStr)
-                            # requestShengfen.remove_sfCode(sfCode)
+                        SpiderSchool.browser.get(url)
+                        SpiderSchool.browser.execute_script(execStr) # 调转到要爬取的页面
 
-                            browser.get(url)
-                            browser.execute_script(execStr) # 调转到要爬取的页面
-
-                            #页面解析
-                            html = browser.page_source
-                            doc = pq(html)
-                            self.resolvePageAndInsert(mlName,zyName,doc,db)
+                        # 页面解析
+                        html = SpiderSchool.browser.page_source
+                        doc = pq(html)
+                        self.resolvePageAndInsert(mlName,zyName,doc,db)
 
         except TimeoutException:
-            print("获取文档失败")
+            MyLog.error("获取文档失败")
 
 if __name__ == '__main__':
     spiderSchool = SpiderSchool()
     spiderSchool.getSchoolList()
 
-    # spiderSchool.main(0)# 爬取学硕信息
 
-#     spiderSchool.main(1)# 爬取专硕信息
+
+

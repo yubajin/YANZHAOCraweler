@@ -1,7 +1,8 @@
-]")
-ssdmOptions.attr("selected","selected");
-ssdmOptions.trigger('change');
-console.log(ssdmOptions .attr("selected"));
+]")-->
+<!--ssdmOptions.attr("selected","selected");-->
+<!--ssdmOptions.trigger('change');-->
+<!--console.log(ssdmOptions .attr("selected"));-->
+
 
 <!-- 选取硕士专业目录查询门类类别查询（默认学专业学位） -->
 var mldm = $("#form2 select[name=mldm]")

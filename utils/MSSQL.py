@@ -5,7 +5,7 @@ import sys
 import os
 import pymssql
 import configparser
-sys.path.append('E:\\mypy')
+from utils.MyLog import *
 
 # 从文件系统读取配置文件
 cf = configparser.ConfigParser()
@@ -67,7 +67,8 @@ class MSSQL:
         except Exception as err:
             flag = False
             self._conn.rollback()
-            print('sql:'+sql)
+            print(sql)
+            MyLog.info(sql)
             print("MSSQL执行失败, %s" % err)
         else:
             return flag

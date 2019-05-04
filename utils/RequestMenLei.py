@@ -11,6 +11,7 @@ class RequestMenlei:
     def __init__(self):
         self.menleiCodes = []#元素为字符串
         self.menleiNames = []#元素为字符串
+        self.menlei = []#元素为字符串
 
     def get_menleiCodes(self):
         return self.menleiCodes
@@ -19,22 +20,7 @@ class RequestMenlei:
         return self.menleiNames
 
     def get_menlei(self):
-        '''
-        将获得的返回数据进行解析分成门类代码列表和门类名称列表 格式[{"mc":"北京市","dm":"11"},{"mc":"天津市","dm":"12"},...] )
-        并返回字典
-        'zyxw'和'专业学位'需要另外添加
-        :return:列表类型{"mc": "哲学","dm": "01"},{"mc": "经济学","dm": "02"},...]
-        '''
-        response = self.spider_menlei()
-        result = response.replace('[', '').replace('\r', '').replace('\n', '').replace(']', '').replace('},','}.').split('.')
-
-        menlei = []
-        for i in range(len(result)):
-            menlei.append(json.loads(result[i]))
-
-        menlei.insert(0,{'mc': '专业学位', 'dm': 'zyxw'})
-
-        return menlei
+        return self.menlei
 
     def insertHead_menleiCode(self,menleiCode):
         self.menleiCodes.insert(0,menleiCode)
@@ -52,6 +38,14 @@ class RequestMenlei:
 
     def remove_menleiName(self,menleiName):
         self.menleiNames.remove(menleiName)
+
+    def remove_menleiHead(self):
+        '''
+        按列表索引删除门类类别
+        :param index: 索引号从0开始
+        :return:
+        '''
+        self.menlei.pop(0)
 
     def ismenleiCodesEmpty(self):
         '''
@@ -79,6 +73,7 @@ class RequestMenlei:
         '''
             将获得的返回数据进行解析分成门类代码列表和门类名称列表
             分别存放在menleiCodes和menleiName中
+            门类代码列表和门类名称组成的字典存放在menlei中
             'zyxw'和'专业学位'需要另外添加
         '''
         #将传来的字符串转化成列表
@@ -89,6 +84,9 @@ class RequestMenlei:
             self.menleiCodes.append(json.loads(result[i]).get('dm'))
             self.menleiNames.append(json.loads(result[i]).get('mc'))
 
+            self.menlei.append(json.loads(result[i]))
+
+        self.menlei.insert(0, {'mc': '专业学位', 'dm': 'zyxw'})
         self.insertHead_menleiCode('zyxw')
         self.insertHead_menleiName('专业学位')
 
@@ -104,9 +102,14 @@ if __name__ == '__main__':
 
     print(requestMenlei.get_menleiName())
 
-    requestMenlei.remove_menleiCode('01')
-    print(requestMenlei.get_menleiCodes())
+    requestMenlei.remove_menleiHead()
+    requestMenlei.remove_menleiHead()
+    mls = requestMenlei.get_menlei()
+    print(mls)
 
-    requestMenlei.remove_menleiName('教育学')
-    print(requestMenlei.get_menleiName())
+    # requestMenlei.remove_menleiCode('01')
+    # print(requestMenlei.get_menleiCodes())
+    #
+    # requestMenlei.remove_menleiName('教育学')
+    # print(requestMenlei.get_menleiName())
 

@@ -32,13 +32,13 @@ class RequestLingyu:
 
         return lingyu
 
-    def remove_lingyuCode(self,lingyuCode):
+    def remove_lingyuCodeHead(self):
         '''
         移除专业领域代码
         :param lingyuCode:专业领域代码
         :return:
         '''
-        self.lingyuCodes.remove(lingyuCode)
+        self.lingyuCodes.pop(0)
 
     def remove_lingyuName(self,lingyuName):
         self.lingyuNames.remove(lingyuName)
@@ -82,18 +82,18 @@ class RequestLingyu:
 if __name__ == '__main__':
     requestLingyu = RequestLingyu()
 
-    requestLingyu.spider_parse('01')
+    requestLingyu.spider_parse('07')
 
     print(requestLingyu.isLingyuCodesEmpty())
 
-    print(requestLingyu.get_lingyu('01'))
+    print(requestLingyu.get_lingyu('07'))
     print(requestLingyu.get_lingyuCodes())
     print(requestLingyu.get_lingyuNames())
 
-    requestLingyu.remove_lingyuCode('0101')
+    requestLingyu.remove_lingyuCodeHead()
     print(requestLingyu.isLingyuCodesEmpty())
     print(requestLingyu.get_lingyuCodes())
 
-    requestLingyu.remove_lingyuName('哲学')
+    requestLingyu.remove_lingyuName('物理学')
     print(requestLingyu.get_lingyuNames())
 

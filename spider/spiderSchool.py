@@ -1,7 +1,5 @@
-import pymssql
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
-from pyquery import PyQuery as pq
 from bs4 import BeautifulSoup
 from config import *
 from utils.RequestLingyu import *
@@ -99,7 +97,7 @@ class SpiderSchool:
 
         return result
 
-    def resolvePageAndInsert(self, mlName,zyName,doc, db):
+    def resolvePageAndInsert(self, mlName,zyName,html, db):
         '''
         将传进来的门类类别和专业名称参数，和对获得的网页doc进行解析得到的一条一条信息组合,并逐条处理，插入数据库中
         :param mlName:门类类别名称
@@ -108,7 +106,7 @@ class SpiderSchool:
         :param db:要插入的数据库名称
         :return:
         '''
-        soup = BeautifulSoup(str(doc), 'html.parser')
+        soup = BeautifulSoup(str(html), 'html.parser')
         page = soup.find(class_='ch-table')
 
         next = True&(page!=None)
@@ -116,7 +114,7 @@ class SpiderSchool:
             MyLog.warning(mlName +  ',' + zyName + '没有数据')
 
         while next:
-            soup = BeautifulSoup(str(doc), 'html.parser')
+            soup = BeautifulSoup(str(html), 'html.parser')
             tbodyRaw = soup.find('tbody')
             tbody = BeautifulSoup(str(tbodyRaw), 'html.parser').find_all('tr')
 
@@ -145,21 +143,13 @@ class SpiderSchool:
                     if type_open[1] == '211':
                         _211 = True
                 schoolAndCode = item.find('a').get_text().lstrip('(').split(')',1)
-                school = {
-                    'link': 'http://yz.chsi.com.cn/' + item.find('a').get('href'),
-                    'schoolCode':schoolAndCode[0],
-                    'school': schoolAndCode[1],
-                    'local': item.find_all('td')[1].get_text(),
-                    '_985': _985,
-                    '_211': _211
-                }
 
-                sc = school['school']
-                scCode = school['schoolCode']
-                local = school['local']
-                _985 = str(school['_985'])
-                _211 = str(school['_211'])
-                link = school['link']
+                sc = schoolAndCode[1]
+                scCode = schoolAndCode[0]
+                local = item.find_all('td')[1].get_text()
+                _985 = str(_985)
+                _211 = str(_211)
+                link = 'http://yz.chsi.com.cn/' + item.find('a').get('href')
 
                 MyLog.info(mlName + ',' + zyName + ','  + local + ',' + sc)
                 cur_sql_users_value = "('"+scCode + "','" + sc + "','" + local + "','" + _985 + "','" + _211 + "','" + mlName + "','" + zyName + "','" + link + "')"
@@ -167,13 +157,11 @@ class SpiderSchool:
                 # print(cur_sql)
 
                 mssql = MSSQL()
-
                 try:
+                    MyLog.info('AcademyInfo:')
                     mssql.ExecNonQuery(cur_sql)
-                    print("招生单位信息插入数据库成功")
-                    MyLog.info("招生单位信息插入数据库成功")
                 except Exception:
-                    print("招生单位信息插入数据库失败")
+                    pass
 
             ##################下一个解析及其操作#######################
             pageBoxRaw = soup.find(class_='ch-page')  # 找到包含页码的盒子
@@ -198,7 +186,6 @@ class SpiderSchool:
 
                 # 页面解析
                 html = SpiderSchool.browser.page_source
-                doc = pq(html)
 
     def getSchoolList(self):
         '''
@@ -217,8 +204,8 @@ class SpiderSchool:
 
             #移除前面，直至工学,纯手工代码操作
             #######################################
-            for i in range(8):
-                requestMenlei.remove_menleiHead()
+            # for i in range(8):
+            #     requestMenlei.remove_menleiHead()
             #######################################
 
             mls = requestMenlei.get_menlei()
@@ -238,10 +225,10 @@ class SpiderSchool:
 
                 # 移除已爬取xx门类中已爬取的学科门类（专业领域），直至专业名称为xxx,纯手工代码操作
                 #######################################
-                if str(mlCode) == '08':
-                    MyLog.info('如果门类是在08门类中，移除直至轻工技术与工程')
-                    for i in range(21):
-                        requestLingyu.remove_lingyuCodeHead()
+                # if str(mlCode) == '08':
+                #     MyLog.info('如果门类是在08门类中，移除直至轻工技术与工程')
+                #     for i in range(21):
+                #         requestLingyu.remove_lingyuCodeHead()
                 #######################################
 
                 lingyuCodes = requestLingyu.get_lingyuCodes()
@@ -258,10 +245,10 @@ class SpiderSchool:
 
                     # 移除已爬的学科门类（专业领域），直至转化专业名为xxx,纯手工代码操作
                     #######################################
-                    if str(lyCode) == '0822':
-                        MyLog.info('如果学科类别(领域)在0822，一直移除至制浆造纸张工程')
-                        for i in range(15):
-                            requestZhuanye.remove_zhuanyeNameHead()
+                    # if str(lyCode) == '0822':
+                    #     MyLog.info('如果学科类别(领域)在0822，一直移除至制浆造纸张工程')
+                    #     for i in range(15):
+                    #         requestZhuanye.remove_zhuanyeNameHead()
                     #######################################
 
                     if requestZhuanye.isZhuanyeNameEmptyAferSpider():#专业名称手动置为空
@@ -283,8 +270,7 @@ class SpiderSchool:
 
                         # 页面解析
                         html = SpiderSchool.browser.page_source
-                        doc = pq(html)
-                        self.resolvePageAndInsert(mlName,zyName,doc,db)
+                        self.resolvePageAndInsert(mlName,zyName,html,db)
 
         except TimeoutException:
             MyLog.error("获取文档失败")

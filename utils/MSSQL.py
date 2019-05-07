@@ -39,7 +39,8 @@ class MSSQL:
                 host=self.host,
                 user=self.user,
                 password=self.pwd,
-                database=self.db
+                database=self.db,
+                charset="utf8"
             )
         except Exception as err:
             print("连接数据库失败, %s" % err)
@@ -64,11 +65,14 @@ class MSSQL:
             self._cur.execute(sql)
             self._conn.commit()
             flag = True
+            MyLog.info("MSSQL执行成功")
+            print("MSSQL执行成功")
         except Exception as err:
             flag = False
             self._conn.rollback()
             print(sql)
             MyLog.info(sql)
+            MyLog.info("MSSQL执行失败" + err)
             print("MSSQL执行失败, %s" % err)
         else:
             return flag

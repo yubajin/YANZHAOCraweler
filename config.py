@@ -1,7 +1,7 @@
 MSSQL_DB = 'yanzhao'
 SCHOOLS_COLLECTION = 'AcademyInfo'
 SCHOOLS_COLLECTION_P = 'AcademyInfo'
-MAJORS_COLLECTION = 'majors'
+MAJORS_COLLECTION = 'DepartmentInfo'
 MAJORS_COLLECTION_P = 'majors_p'
 DETAILS_COLLECTION = 'details'
 DETAILS_COLLECTION_P = "details_p"
